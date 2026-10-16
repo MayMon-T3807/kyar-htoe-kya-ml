@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ကျားထိုးကြမယ် | Kyar Htoe Kya Ml</title>
+
+  <!-- Fonts: Myanmar script + an elegant English serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+Myanmar:wght@400;600&family=Noto+Serif+Myanmar:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="view-home">
+
+  <!-- soft floating petals in the background -->
+  <div class="petals" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- top bar: shown on both screens -->
+  <header class="topbar">
+    <button class="back-btn" id="backBtn" data-i18n-title="home" title="Home">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="topbar-title">
+      <span class="mm-title">ကျားထိုးကြမယ်</span>
+      <span class="en-title">Kyar Htoe Kya Ml</span>
+    </div>
+    <div class="topbar-tools">
+      <button class="tool-btn" id="soundBtn" data-i18n-title="sound" title="Sound">
+        <svg viewBox="0 0 24 24" width="20" height="20" class="icon-on"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24" width="20" height="20" class="icon-off"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button id="langMm" class="lang-btn active">မြန်မာ</button>
+        <button id="langEn" class="lang-btn">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== SCREEN 1: choose opponent ===================== -->
+  <main id="homeScreen" class="screen">
+
+    <section class="hero">
+      <svg class="stupa" viewBox="0 0 400 300" aria-hidden="true">
+        <defs>
+          <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f3d27a"/>
+            <stop offset="1" stop-color="#b8862b"/>
+          </linearGradient>
+        </defs>
+        <g fill="url(#gold)">
+          <!-- side stupas -->
+          <path d="M70 250 C70 215 85 200 95 178 C105 200 120 215 120 250 Z"/>
+          <rect x="92" y="160" width="6" height="20"/>
+          <path d="M280 250 C280 215 295 200 305 178 C315 200 330 215 330 250 Z"/>
+          <rect x="302" y="160" width="6" height="20"/>
+          <!-- main stupa -->
+          <rect x="95" y="262" width="210" height="14" rx="2"/>
+          <rect x="112" y="246" width="176" height="16" rx="2"/>
+          <rect x="130" y="230" width="140" height="16" rx="2"/>
+          <path d="M148 230 C148 170 172 140 200 92 C228 140 252 170 252 230 Z"/>
+          <rect x="180" y="74" width="40" height="8" rx="3"/>
+          <rect x="186" y="62" width="28" height="8" rx="3"/>
+          <rect x="191" y="51" width="18" height="8" rx="3"/>
+          <path d="M200 20 L212 48 L188 48 Z"/>
+          <circle cx="200" cy="16" r="5"/>
+        </g>
+      </svg>
+
+      <h1 class="site-title">ကျားထိုးကြမယ်</h1>
+      <p class="site-sub">Kyar Htoe Kya Ml</p>
+      <div class="ornament" aria-hidden="true"><span></span></div>
+      <p class="tagline" data-i18n="tagline"></p>
+    </section>
+
+    <section class="panel choose">
+      <h2 data-i18n="chooseOpponent"></h2>
+
+      <div class="agent-grid" id="agentGrid">
+
+        <button class="agent-card selected" data-level="easy">
+          <span class="agent-icon">
+            <svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="7" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="17" cy="17" r="3" fill="currentColor"/><circle cx="24" cy="24" r="3" fill="currentColor"/><circle cx="31" cy="31" r="3" fill="currentColor"/></svg>
+          </span>
+          <span class="agent-level" data-i18n="levelEasy"></span>
+          <span class="agent-name">Random Agent</span>
+          <span class="agent-desc" data-i18n="descEasy"></span>
+        </button>
+
+        <button class="agent-card" data-level="medium">
+          <span class="agent-icon">
+            <svg viewBox="0 0 48 48"><circle cx="21" cy="21" r="12" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 30l11 11" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M15 21h12M21 15v12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </span>
+          <span class="agent-level" data-i18n="levelMedium"></span>
+          <span class="agent-name">Heuristic Agent</span>
+          <span class="agent-desc" data-i18n="descMedium"></span>
+        </button>
+
+        <button class="agent-card" data-level="hard">
+          <span class="agent-icon">
+            <svg viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M24 8v12M24 20L12 32M24 20l12 12"/></g><circle cx="24" cy="8" r="4.5" fill="currentColor"/><circle cx="12" cy="36" r="4.5" fill="currentColor"/><circle cx="36" cy="36" r="4.5" fill="currentColor"/></svg>
+          </span>
+          <span class="agent-level" data-i18n="levelHard"></span>
+          <span class="agent-name">Minimax Agent</span>
+          <span class="agent-desc" data-i18n="descHard"></span>
+        </button>
+
+      </div>
+
+      <h3 data-i18n="yourPieces"></h3>
+      <div class="side-pick" id="sidePick">
+        <button class="side-card selected" data-side="b">
+          <span class="mini-piece red"></span>
+          <span class="side-text">
+            <strong data-i18n="sideRed"></strong>
+            <small data-i18n="sideRedNote"></small>
+          </span>
+        </button>
+        <button class="side-card" data-side="w">
+          <span class="mini-piece ivory"></span>
+          <span class="side-text">
+            <strong data-i18n="sideIvory"></strong>
+            <small data-i18n="sideIvoryNote"></small>
+          </span>
+        </button>
+      </div>
+
+      <button class="play-btn" id="playBtn">
+        <span data-i18n="play"></span>
+      </button>
+    </section>
+
+    <section class="panel rules">
+      <h2 data-i18n="howToPlay"></h2>
+      <ol>
+        <li data-i18n="rule1"></li>
+        <li data-i18n="rule2"></li>
+        <li data-i18n="rule3"></li>
+        <li data-i18n="rule4"></li>
+      </ol>
+    </section>
+
+  </main>
+
+  <!-- ===================== SCREEN 2: the game ===================== -->
+  <main id="gameScreen" class="screen">
+    <div class="game-layout">
+
+      <!-- the table: 3D board, pieces -->
+      <section class="stage" id="stage">
+        <div class="table-glow"></div>
+
+        <div class="board-scene">
+          <div class="board3d" id="board3d">
+            <div class="board-shadow"></div>
+            <div class="board-front"></div>
+            <div class="board-top">
+              <div class="board-grid" id="boardGrid"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- pieces are drawn flat on top of the board -->
+        <div class="piece-layer" id="pieceLayer"></div>
+
+      </section>
+
+      <!-- side panel -->
+      <aside class="side-panel">
+
+        <div class="panel status-card">
+          <div class="turn-row">
+            <span class="turn-piece" id="turnPiece"></span>
+            <span class="turn-text" id="turnText"></span>
+          </div>
+          <p class="message" id="message"></p>
+        </div>
+
+        <div class="panel counts-card">
+          <h3 data-i18n="piecesLeft"></h3>
+          <div class="count-row">
+            <span class="mini-piece red"></span>
+            <span class="count-label" id="labelRed"></span>
+            <span class="count-num" id="countRed">12</span>
+          </div>
+          <div class="count-row">
+            <span class="mini-piece ivory"></span>
+            <span class="count-label" id="labelIvory"></span>
+            <span class="count-num" id="countIvory">12</span>
+          </div>
+        </div>
+
+        <div class="panel notes-card">
+          <h3 data-i18n="notesTitle"></h3>
+          <p class="agent-line" id="agentLine"></p>
+          <div id="notesBody" class="notes-body"></div>
+        </div>
+
+        <div class="btn-row">
+          <button class="soft-btn" id="newGameBtn" data-i18n="newGame"></button>
+          <button class="soft-btn ghost" id="homeBtn" data-i18n="chooseAgain"></button>
+        </div>
+      </aside>
+    </div>
+
+    <!-- game over card -->
+    <div class="overlay" id="overlay">
+      <div class="overlay-card">
+        <div class="overlay-ornament" aria-hidden="true"></div>
+        <h2 id="overlayTitle"></h2>
+        <p id="overlayText"></p>
+        <div class="btn-row">
+          <button class="play-btn small" id="againBtn" data-i18n="playAgain"></button>
+          <button class="soft-btn ghost" id="overlayHomeBtn" data-i18n="chooseAgain"></button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
